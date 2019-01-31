@@ -1,4 +1,4 @@
-# css.draft.v1
+# css.draft.thy
 ## CSS 方法论
 CSS 理论和框架有不少。但 CSS 框架的用法较为繁琐，而且必须成套使用，而 CSS 理论更多的是阐释 HTML 和 CSS 之间的关系，而不是预编译的代码库，因此使用起来更为灵活。
 
@@ -76,7 +76,7 @@ BEM 使用非常简洁的约定来创建CSS 类名，而这些字符串可能会
 </details>
 
 
-## thy 提议
+## 提议
 <details>
 <summary></summary>
 
