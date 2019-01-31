@@ -76,7 +76,7 @@ BEM 使用非常简洁的约定来创建CSS 类名，而这些字符串可能会
 </details>
 
 
-## thy
+## thy 提议
 <details>
 <summary></summary>
 
