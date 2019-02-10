@@ -1,27 +1,44 @@
 # css.draft.thy
 ## CSS 方法论
-CSS 理论和框架有不少。但 CSS 框架的用法较为繁琐，而且必须成套使用，而 CSS 理论更多的是阐释 HTML 和 CSS 之间的关系，而不是预编译的代码库，因此使用起来更为灵活。
-
-没有哪个方法论是完美的，一个项目可能与某一个方法契合得最好，但是另一个项目却更适合用另一个方法。所以，完全可以创造自己的方法论，或者将一个现有的理论根据自己的需求进行改造。因此，如果不知道如何选择方法论，最好是看一些比较杰出的方法论，根据你手头的项目来分析其中哪些可用，哪些不可用。下面来看下先比较出名的方法论。
+谈到 CSS 就离不开 HTML，现在有不少关于阐释 HTML 和 CSS 之间关系的理论。了解这些，对于组织 CSS 很有帮助。下面通过网上的一些资料，介绍一些认可度比较高的方法论。
 
 ### OOCSS 方法
 <details>
 <summary></summary>
 
-全称是 Object-Oriented CSS，面向对象的 CSS。看下面示例：
+全称是 Object-Oriented CSS，面向对象的 CSS。在 2008 年的时候就被提出，在 [OOCSS wiki][url-oocss-wiki] 介绍中，该方法有两个主要的原则：
+#### 1 分离结构和外观
+意思是将视觉特性定义为可复用的单元（例如背景和边框样式）。换句话说，就是把布局和设计的样式都独立出来。见下面的例子：
 ```html
-<div class="toggle simple">
-  <div class="toggle-control open">
-    <h1 class="toggle-title">Title 1</h1>
-  </div>
-  <div class="toggle-details open"></div>
+<div class="warn">warning</div>
+```
+样式 warn 表示警告的字体颜色，在系统内，只要是用到警告的地方，统一使用这个样式。
+
+#### 2 分离容器和内容
+意思是指把内容从容器中分离开来。不论你放到那里，看起来都是一样的。见下面的例子：
+```html
+<div class="dialog blue">
+  <div class=“dialog-title”><span class="text">Title</span></div>
+  <div class="dialog-content show"><span class="text">content</span></div>
 </div>
 ```
-OOCSS 有两个主要的原则：
-- 分离结构和外观：将视觉特性定义为可复用的单元。上面的例子就是一个片段，例如，当前的“simple”皮肤使用直角，而“complex”皮肤可能使用圆角，还加了阴影。
-- 分离容器和内容：指的是不再将元素位置作为样式的限定词。和在容器内标记的CSS 类名不同，我们现在使用的是可复用的CSS 类名，如toggle-title， 它应用于相应的文本处理上，而不管这个文本的元素是什么。
-
-当想提供一套组件让开发人员组合起来创建用户界面时，这种方法非常有用。Bootstrap 就是一个特别好的例子，它是一个自带各种皮肤的小组件系统。
+这个例子中不同的模块显示不同的字体和颜色，一般可能会这样做：
+```css
+.dialog-title .text {color: #333;}
+.dialog-content .text {color: #666;}
+```
+但在 OOCSS 方法中是通过添加一个新的 `class` 来描述需要的样式：
+```html
+<div class="dialog blue">
+  <div class=“dialog-title”><span class="text title-text">Title</span></div>
+  <div class="dialog-content show"><span class="text content-text">content</span></div>
+</div>
+```
+```css
+.title-text {color: #333;}
+.content-text {color: #666;}
+```
+当想提供一套组件让开发人员组合起来创建用户界面时，这种方法非常有用。Bootstrap 就是一个例子，它是一个自带各种皮肤的小组件系统。
 </details>
 
 
@@ -29,23 +46,21 @@ OOCSS 有两个主要的原则：
 <details>
 <summary></summary>
 
-全称是 Scalable and Modular Architecture for CSS，模块化架构的可扩展 CSS。看下面示例：
-```html
-<div class="toggle toggle-simple">
-  <div class="toggle-control is-active">
-    <h1 class="toggle-title">Title 1</h1>
-  </div>
-  <div class="toggle-details is-active"></div>
-</div>
-```
-SMACSS（https://smacss.com/）和 OOCSS 有许多相似之处，但 SMACSS 的不同点是把样式系统划分为五个具体类别。
-- 基础：如果不添加CSS 类名，标记会以什么外观呈现。
+全称是 Scalable and Modular Architecture for CSS，模块化架构的可扩展 CSS。[SMACSS][url-smacss] 把样式系统划分为五个具体类别：
+- 基础：标签默认展示的样式，基本上就是元素选择器，可以包含属性选择器、伪类选择器、子选择器或兄弟选择器。在这个里面不应该出现 `!important` 。
 - 布局：把页面分成一些区域。
-- 模块：设计中的模块化、可复用的单元。
+- 模块：设计中的模块化、可复用的单元，例如列表、弹窗等。
 - 状态：描述在特定的状态或情况下，模块或布局的显示方式。
 - 主题：一个可选的视觉外观层，可以让你更换不同主题。
 
-在例子中，可以看到模块样式（toggle、toggle-title、toggle-details）、子模块（toggle-simple）和状态（is-active）的组合。对于如何创建功能的小模块，OOCSS 和 SMACSS 有许多相似之处。它们都把样式作用域限定到根节点的CSS 类名上，然后通过皮肤（OOCSS）或者子模块（SMACSS）进行修改。除了SMACSS 把代码划分类别之外，两者之间最显著的差异是使用皮肤而不是子模块，以及带 is 前缀的状态类名。
+见下面的例子：
+```html
+<div class="dialog dialog-blue">
+  <div class=“dialog-title”><span class="text">Title</span></div>
+  <div class="dialog-content is-show"><span class="text">content</span></div>
+</div>
+```
+观察模块样式 `dialog`、`dialog-blue`、`dialog-title`、`dialog-content` 和状态 `is-show` ，可以发现对于如何创建功能的小模块，OOCSS 和 SMACSS 有许多相似之处。它们都把样式作用域限定到根节点的 CSS 类名上，然后通过皮肤（OOCSS）或者子模块（SMACSS）进行修改。除了SMACSS 把代码划分类别之外，两者之间最显著的差异是使用皮肤而不是子模块，以及带 `is` 前缀的状态类名。
 </details>
 
 
@@ -53,57 +68,352 @@ SMACSS（https://smacss.com/）和 OOCSS 有许多相似之处，但 SMACSS 的�
 <details>
 <summary></summary>
 
-全称是Block Element Modifier，块元素修饰符。看下面示例：
+全称是 Block Element Modifier，块元素修饰符。[BEM][url-BEM] 是一种基于组件的 Web 开发方法。其背后的想法是将用户界面划分为独立的块。其中包含的内容不仅仅是 CSS，其中 CSS 的内容结合[About HTML semantics and front-end architecture][url-blog1]，得出一套命名规则：
+- 块名：所属组件的名称，一般形式为 `.block`。
+- 元素：元素在块里面的名称，一般形式为 `.block__element`。
+- 修饰符：任何与块或元素相关联的修饰符,一般形式为 `.block--modifier`。
+
+看下面例子：
 ```html
-<div class="toggle toggle--simple">
-  <div class="toggle__control toggle__control--active">
-    <h1 class="toggle__title">Title 1</h1>
-  </div>
-  <div class="toggle__details toggle__details--active"></div>
+<div class="dialog dialog-skin-blue">
+  <div class=“dialog__title”><span class="dialog__text">Title</span></div>
+  <div class="dialog__content dialog__content--show"><span class="dialog__text">content</span></div>
 </div>
 ```
-BEM 只是一个 CSS 类名命名规则。它不涉及如何书写 CSS 的结构，而只是建议每个元素都添加带有如下内容的 CSS 类名：
-- 块名：所属组件的名称。
-- 元素：元素在块里面的名称。
-- 修饰符：任何与块或元素相关联的修饰符。
+这种方式不建议使用元素选择器，名称过长时，用 - 连接。BEM 使用非常简洁的约定来创建 CSS 类名，而这些字符串可能会相当长。
 
-BEM 使用非常简洁的约定来创建CSS 类名，而这些字符串可能会相当长。
+这种方法在 OOCSS 或 SMACSS 里使用的好处是，每一个 CSS 类名都详细地描述了它实现了什么。代码中没有 `show` 或者 `is-show` 这样只在特定背景下才能理解的 CSS 类名。如果单独看 `show` 或者 `is-show` 这两个名字，我们并不知道它们的含义是什么。
 
-这种方法在OOCSS 或SMACSS 里使用的好处是，每一个CSS 类名都详细地描述了它实现了什么。代码中没有open 或者is-active 这样只在特定背景下才能理解的CSS 类名。
-如果单独看open 和is-active 这两个名字，我们并不知道它们的含义是什么。
-
-虽然 BEM 法看起来很累赘、很冗余 ，但是当看到一个toggle__details--active 的 CSS 类名，就知道它是表示：这个元素的名称是details，位置在toggle 组件里，状态为激活。
+虽然 BEM 法看起来很累赘、很冗余 ，但是当看到一个 `dialog__content--show` 的 CSS 类名，就知道它是表示：这个元素的名称是 content，位置在 dialog 组件里，状态为显示。
 </details>
 
-
-## 提议
+## <a name="choose"></a> 关于方法的选择
 <details>
 <summary></summary>
 
-### 1 首先要文档化，把公用的样式进行说明，例如文件路径。方便寻找。写样式时，优先考虑使用公用样式。
+没有什么方法论是完美的，你可能会发现，不同的项目适合不同的方法。也许还有新的方法，我们还没有发现，不要因为一套规范很流行或者别的团队在使用就选择它。理解方案背后这么做的原因，不要害怕尝试，混合已有的方案，甚至自己或者团队一起创造出独一无二的方案。
+</details>
 
-### 2 一个标签上，公用的样式不能超过 3 个，不能达到效果的，再写单独适用的样式名称。
 
-### 3 CSS 选择器的开销从小到大是：
-- ID选择符，#exam {}。
-- 类选择符, .exam {}。
-- 类型选择符，a {}。
-- 相邻兄弟选择符，h1 + a {}。
-- 子选择符，.exam > a {}。
-- 后代选择符，.exam a {}。
-- 通配符，* {}。
-- 属性选择符，[href="#exam"] {}。
-- 伪类和伪元素，a:hover {}
-由于CSS 是从右向左进行匹配，所以写 CSS 的建议：
-- 避免使用统配规则，也就是不要使用相邻兄弟选择符、子选择符、后代选择符、通配符、属性选择符。
-- 避免使用ID选择符。
-- 不要使用限定类选择符，例如 li.row 改成 .list-row。
-- 越具体越好，不要使用过长后代选择符，例如 .main .content .list .list-row ,直接通过一种规则，指定一个具体的类名，例如 .content-list-row。
-- 利用继承。
+## 规范提议
+<details>
+<summary>原则</summary>
 
-### 4 后代选择符不能超过 3 层。
+- 删除僵尸代码。
+- 不能有行内 CSS。
+- 不能有空的规则。
+- 选择器不能超过 3 层。
+- 一个标签上的类名不能超过 4 个，给 js 使用的类名不算。
+- 若无 ID 可用，给 js 使用的类样式必须带 js 前缀，且不能有具体样式。
+- 删除冗余 ID，避免使用 ID 选择器，如果有，转换为类选择器。
+- 给出必要的注释说明。
+- 抽离基础样式和功能性样式，并提供注释说明，对团队告知对应位置。
+- 避免使用 `!important`。
 
-### 5 新的公用样式要进行讨论决定。
+由于 CSS 选择符是从右到左进行匹配，所以：
+- 避免使用标签，例如 `.content ul li`。
+- 避免使用通配符。
+- 避免使用子选择符，例如 `.content > ul >li`。
+</details>
+
+<details>
+<summary>命名</summary>
+
+- 根据选择的方法，与团队成员共同商定命名形式，可能涉及到公用样式、组件样式、对应页面样式。
+- 类名使用小写。
+- ID 采用驼峰式命名。
+</details>
+
+<details>
+<summary>代码风格</summary>
+
+- [缩进](#indent)
+- [空格](#space)
+- [空行](#empty-row)
+- [换行](#line-feed)
+- [分号](#semicolon)
+- [引号](#quotation)
+- [颜色](#color)
+- [属性值为 0 的情况](#zero)
+- [属性简写](#short)
+- [属性声明顺序](#attribute)
+- [媒体查询](#media)
+
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
+
+#### <a name="indent"></a> 缩进
+使用 2 个空格。
+
+#### <a name="space"></a> 空格
+需要空格情况：
+- `{` 前。
+- 冒号 `:` 后面。
+- `!important` 前。
+- 注释的开始和结尾。
+
+不需要空格情况：
+- 冒号 `:` 前面。
+- `!important` 中 `!` 前。
+- 多个规则的分隔符 `，`前。
+- 属性值中 `(` 后和 `)` 前。
+```css
+/* good */
+.nav,
+.footer {
+  font-size: 18px;
+  color: #666 !important;
+  background-color: rgba(0,0,0,.5);
+}
+
+/*not good*/
+.nav ,
+.footer{
+  font-size :18px;
+  color: #666! important;
+  background-color: rgba( 0, 0, 0, .5 );
+}
+```
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
+
+#### <a name="empty-row"></a> 空行
+需要空行的情况：
+- 文件最后保留一个空行。
+- `}` 后留空行.
+```css
+/* good */
+.nav {
+  font-size: 18px;
+}
+
+.footer {
+  color: #666;
+}
+
+/* not good */
+.nav {
+  font-size: 18px;
+}
+.footer {
+  color: #666;
+}
+```
+
+#### <a name="line-feed"></a> 换行
+需要换行的情况：
+- `{` 后和 `}` 前。
+- 每个属性及对应值独占一行。
+- 多个规则的分隔符 `,` 后。
+```css
+/* good */
+.nav,
+.footer {
+  font-size: 18px;
+  color: #666;
+}
+
+.body {
+  font-size: 16px;
+}
+
+/* not good */
+.nav,.footer {
+  font-size: 18px;color: #666;
+}
+
+.body {font-size: 16px;}
+```
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
+
+#### <a name="semicolon"></a> 分号
+每个属性名末尾要加分号。
+```css
+/* good */
+.nav {
+  font-size: 18px;
+}
+
+/* not good */
+.nav {
+  font-size: 18px
+}
+```
+
+#### <a name="quotation"></a> 引号
+统一使用双引号。
+```css
+/* good */
+.nav:before {
+  content: "";
+  font-size: 18px;
+}
+
+/* not good */
+.nav:before {
+  content: '';
+  font-size: 18px;
+}
+```
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
+
+#### <a name="color"></a> 颜色
+使用小写字幕，能简写就使用简写。
+```css
+/* good */
+.nav {
+  color: #ab1243;
+  background-color: #236;
+}
+
+/* not good */
+.nav {
+  color: #AB1243;
+  background-color: #223366;
+}
+```
+
+#### <a name="zero"></a> 属性值为 0 的情况
+- 不要带单位。
+- 在定义无边框样式时，使用 0 代替 none。
+- 去除小数点前面的 0。
+
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
+
+#### <a name="short"></a> 属性简写
+需要简写的属性有：
+- margin。
+- padding。
+```css
+/* good */
+.nav {
+  margin: 10px 0 0 6px;
+  padding: 2px 0 0 3px;
+}
+
+/* not good */
+.nav {
+  margin-top: 10px;
+  margin-left: 6px;
+  padding-top: 2px;
+  padding-left: 3px;
+}
+```
+#### <a name="attribute"></a> 属性声明顺序
+建议顺序为：
+<details>
+<summary>1. 布局定位属性。</summary>
+
+```javascript
+[
+  "display",
+  "visibility",
+  "float",
+  "clear",
+  "overflow",
+  "clip",
+  "zoom",
+  "table-layout",
+  "border-spacing",
+  "border-collapse",
+  "list-style",
+  "flex",
+  "flex-direction",
+  "justify-content",
+  "align-items",
+  "position",
+  "top",
+  "right",
+  "bottom",
+  "right",
+  "z-index",
+]
+```
+</details>
+
+<details>
+<summary>2. 自身属性。</summary>
+
+```javascript
+[
+  "margin",
+  "box-sizing",
+  "border",
+  "border-radius",
+  "padding",
+  "width",
+  "min-width",
+  "max-widht",
+  "height",
+  "min-height",
+  "max-height",
+]
+```
+</details>
+
+<details>
+<summary>3. 文本属性。</summary>
+
+```javascript
+[
+  "font-size",
+  "line-height",
+  "text-align",
+  "vertical-align",
+  "white-space",
+  "text-decoration",
+  "text-emphasis",
+  "text-indent",
+  "text-overflow",
+  "word-wrap",
+  "word-break",
+  "color",
+  "text-shadow",
+]
+```
+</details>
+
+<details>
+<summary>4. 其它属性。</summary>
+
+```javascript
+[
+  "background",
+  "background-color",
+  "background-image",
+  "background-repeat",
+  "background-attachment",
+  "background-position",
+  "background-clip",
+  "background-origin",
+  "background-size",
+  "outline",
+  "opacity",
+  "filter",
+  "box-shadow",
+  "transitio"n
+  "transform",
+  "animation",
+  "cursor",
+  "pointer-events",
+]
+```
+</details>
+
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
+
+#### <a name="media"></a> 媒体查询
+尽量将媒体查询的规则靠近与他们相关的规则，不要将他们一起放到一个独立的样式文件中，或者丢在文档的最底部，这样做只会让大家以后更容易忘记他们。
+```css
+/* good */
+.nav {
+  font-size: 14px;
+}
+
+@media (min-width: 480px) {
+  .nav {
+    font-size: 16px;
+  }
+}
+```
 </details>
 
 
