@@ -421,5 +421,30 @@
 ```
 </details>
 
+## <a name="reference"></a> 参考资料
+<details>
+<summary></summary>
+
+- [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css)
+- [Code Guide by @AlloyTeam](http://alloyteam.github.io/CodeGuide/)
+- [前端代码规范](https://guide.aotu.io/docs/)
+- [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html)
+- [高性能网站建设进阶指南](https://book.douban.com/subject/4719162/)
+- [前端架构设计](http://www.ituring.com.cn/book/1946)
+- [CSS 重构](http://www.ituring.com.cn/book/1943)
+- [60 CSS Coding Style Guide Examples For Developers](https://techfragments.com/css-style-guide-examples/)
+- [CSS 设计指南](http://www.ituring.com.cn/book/1111)
+</details>
+
+
+
+
+
+[url-oocss]:http://oocss.org/
+[url-oocss-wiki]:https://github.com/stubbornella/oocss/wiki
+[url-smacss]:https://smacss.com/
+[url-bem]:https://en.bem.info/
+[url-blog1]:http://nicolasgallagher.com/about-html-semantics-front-end-architecture/
+
 
 
