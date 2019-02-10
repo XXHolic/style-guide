@@ -122,6 +122,11 @@
 - 根据选择的方法，与团队成员共同商定命名形式，可能涉及到公用样式、组件样式、对应页面样式。
 - 类名使用小写。
 - ID 采用驼峰式命名。
+
+需要更具不同的项目，具体的指定。
+- ydh-resource-web
+- ircloud-ydh-web
+- ircloud-ydh-h5
 </details>
 
 <details>
