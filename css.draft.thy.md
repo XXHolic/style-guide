@@ -130,7 +130,7 @@
 </details>
 
 <details>
-<summary>代码风格</summary>
+<summary><a name="index"></a> 代码风格</summary>
 
 - [缩进](#indent)
 - [空格](#space)
