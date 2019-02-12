@@ -1,4 +1,25 @@
 # css.draft.thy
+## 思路
+<details>
+<summary>一个新项目，该如何组织？</summary>
+- 基于个人经验，总结出的自己的一套。
+- 直接拿网上已有的规范。
+- 基于个人、网上和实际情况弄一套。
+
+</details>
+
+<details>
+<summary>基于已有项目重构，该如何组织？</summary>
+
+
+</details>
+
+<details>
+<summary>基于已有项目维护，该如何组织？</summary>
+
+
+</details>
+
 ## CSS 方法论
 谈到 CSS 就离不开 HTML，现在有不少关于阐释 HTML 和 CSS 之间关系的理论。了解这些，对于组织 CSS 很有帮助。下面通过网上的一些资料，介绍一些认可度比较高的方法论。
 
