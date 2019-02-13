@@ -2,6 +2,7 @@
 ## 思路
 <details>
 <summary>一个新项目，该如何组织？</summary>
+
 - 基于个人经验，总结出的自己的一套。
 - 直接拿网上已有的规范。
 - 基于个人、网上和实际情况弄一套。
@@ -10,12 +11,14 @@
 
 <details>
 <summary>基于已有项目重构，该如何组织？</summary>
+
 - 先了解现有项目大体情况，根据情况选择重构方案。
 
 </details>
 
 <details>
 <summary>基于已有项目维护，该如何组织？</summary>
+
 - 划定明确的新旧界线，基于已有的样式制定明确的规范。
 
 </details>
@@ -63,7 +66,7 @@
 </details>
 
 
-### MACSS 方法
+### SMACSS 方法
 <details>
 <summary></summary>
 
