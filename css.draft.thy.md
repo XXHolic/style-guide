@@ -10,13 +10,13 @@
 
 <details>
 <summary>基于已有项目重构，该如何组织？</summary>
-
+- 先了解现有项目大体情况，根据情况选择重构方案。
 
 </details>
 
 <details>
 <summary>基于已有项目维护，该如何组织？</summary>
-
+- 划定明确的新旧界线，基于已有的样式制定明确的规范。
 
 </details>
 
