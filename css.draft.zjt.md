@@ -44,3 +44,113 @@
           border: none;
         }
     ```
+
+
+## ydh-resource-web
+
+### 现有公用样式路径
+- agentV2/resource-app/css/init.css // 140-169行框架样式
+- agentV2/resource-app/css/lib.css
+- agentV2/resource-app/css/app.css // 插件以及全局功能样式，比如弹框、刷新==
+
+<details>
+<summary>命名规范</summary>
+
+#### 文件命名
+- 使用小写，按功能模块
+****
+#### class命名
+- 采用中划线
+- 用于js操作的加上js前缀
+****
+#### id命名
+- 功能模块
+- 驼峰式命名
+</details>
+
+<details>
+<summary>原则</summary>
+
+- 命名尽量语义化
+- `id` 不用于css修饰
+- 发现没有用的 `class` 或者 `style` 要及时删掉
+- 尽量少用 `!important`
+- 选择器超过三层的要适时去掉中间的 `class`
+- 对于类似列表，右侧需要border,但是最后一个需要的样式，不采用覆盖样式的方法
+      <p>例: z | j | t</p>
+    ```css
+        // 不推荐                                // 推荐  
+        .class-a{                             .class-a + .class-a {
+          border-right: 1px solid #ff6600;         border-left: 1px solid #ff6600;
+        }                                     }
+        .class-a:last-child {
+          border: none;
+        }
+    ```
+- 相应功能带上注释
+</details>
+
+<details>
+<summary>代码风格</summary>
+
+#### 缩进 
+- `2` 个字节
+  
+#### 分号
+- 属性结束必须带分号
+  
+#### 空格
+- `:` 后面带空格，前面不需要
+- `{` 前面带空格
+- 注释前后带空格
+  
+#### 空行
+- `{` 后面空行
+- 模块之间空行
+  
+#### 换行
+- `{` 和 `}` 后需要换行
+- `,` 后面换行
+- 属性之间后面即`;`后换行
+  
+####　注释
+- 额外或特殊单独的css注释
+  
+#### 引号
+
+#### 颜色
+- 采用16进制，小写字母，可简写的简写
+- 如果与原始交互不能简写，要写注释
+  
+#### 属性简写
+- `margin`、`padding`超过2个采用复合写法，反之简写
+- `transition`、`animation`等css3属性采用简写
+  
+#### 属性顺序说明
+
+#### 媒体查询
+跟随用到的功能模块方便查找
+
+#### 分类书写
+- 属性属于同一类的写一起
+```css 
+  // 推荐
+  {
+    font-size: 12px;
+    font-family: 'Microsoft';
+    padding: 4px;
+    margin: 4px;
+    width: 100px;
+    height: 100px;
+  }
+  // 不推荐
+  {
+    font-size: 12px;
+    font-family: 'Microsoft';
+    padding: 4px;
+    height: 100px;
+    margin: 4px;
+    width: 100px;
+  }
+```
+</details>
