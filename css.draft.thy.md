@@ -445,6 +445,191 @@
 ```
 </details>
 
+
+## ydh-resource-web
+### 现有公用样式
+
+
+### 命名规范
+<details>
+<summary></summary>
+
+#### 文件名
+- 使用小写字母。
+
+#### class 名
+- 类名使用小写，用中划线连接。
+
+#### id 名
+- 采用驼峰式命名。
+</details>
+
+### 原则
+<details>
+<summary></summary>
+
+- 删除僵尸代码。
+- 不能有行内 CSS。
+- 不能有空的规则。
+- 选择器不能超过 3 层。
+- 一个标签上的类名不能超过 4 个，给 js 使用的类名不算。
+- 若无 ID 可用，给 js 使用的类样式必须带 js 前缀，且不能有具体样式。
+- 删除冗余 ID，避免使用 ID 选择器，如果有，转换为类选择器。
+- 给出必要的注释说明。
+- 抽离基础样式和功能性样式，并提供注释说明，对团队告知对应位置。
+- 避免使用 `!important`。
+
+由于 CSS 选择符是从右到左进行匹配，所以：
+- 避免使用标签，例如 `.content ul li`。
+- 避免使用通配符。
+- 避免使用子选择符，例如 `.content > ul >li`。
+</details>
+
+
+### 代码风格
+为了方便对比统计，有以下基本分类，如果觉得有其它必要的，可以另行在自己文档中补充新的分类。觉得没有必要的部分，跳过即可。
+
+#### 缩进
+使用 2 个空格。
+
+#### 分号
+每个属性名末尾要加分号。
+```css
+/* good */
+.nav {
+  font-size: 18px;
+}
+
+/* not good */
+.nav {
+  font-size: 18px
+}
+```
+
+#### 空格
+需要空格情况：
+- `{` 前。
+- 冒号 `:` 后面。
+- `!important` 前。
+- 注释的开始和结尾。
+
+不需要空格情况：
+- 冒号 `:` 前面。
+- `!important` 中 `!` 前。
+- 多个规则的分隔符 `，`前。
+- 属性值中 `(` 后和 `)` 前。
+```css
+/* good */
+.nav,
+.footer {
+  font-size: 18px;
+  color: #666 !important;
+  background-color: rgba(0,0,0,.5);
+}
+
+/*not good*/
+.nav ,
+.footer{
+  font-size :18px;
+  color: #666! important;
+  background-color: rgba( 0, 0, 0, .5 );
+}
+```
+
+#### 空行
+需要空行的情况：
+- 文件最后保留一个空行。
+- `}` 后留空行.
+```css
+/* good */
+.nav {
+  font-size: 18px;
+}
+
+.footer {
+  color: #666;
+}
+
+/* not good */
+.nav {
+  font-size: 18px;
+}
+.footer {
+  color: #666;
+}
+```
+
+#### 换行
+需要换行的情况：
+- `{` 后和 `}` 前。
+- 每个属性及对应值独占一行。
+- 多个规则的分隔符 `,` 后。
+```css
+/* good */
+.nav,
+.footer {
+  font-size: 18px;
+  color: #666;
+}
+
+.body {
+  font-size: 16px;
+}
+
+/* not good */
+.nav,.footer {
+  font-size: 18px;color: #666;
+}
+
+.body {font-size: 16px;}
+```
+
+#### 注释
+
+#### 引号
+统一使用双引号。
+```css
+/* good */
+.nav:before {
+  content: "";
+  font-size: 18px;
+}
+
+/* not good */
+.nav:before {
+  content: '';
+  font-size: 18px;
+}
+```
+
+#### 颜色
+使用小写字幕，能简写就使用简写。
+```css
+/* good */
+.nav {
+  color: #ab1243;
+  background-color: #236;
+}
+
+/* not good */
+.nav {
+  color: #AB1243;
+  background-color: #223366;
+}
+```
+
+#### 属性简写
+
+#### 属性声明顺序
+
+#### 媒体查询
+
+#### 属性值为 0 的情况
+- 不要带单位。
+- 在定义无边框样式时，使用 0 代替 none。
+- 去除小数点前面的 0。
+
+
 ## <a name="reference"></a> 参考资料
 <details>
 <summary></summary>
@@ -459,13 +644,6 @@
 - [60 CSS Coding Style Guide Examples For Developers](https://techfragments.com/css-style-guide-examples/)
 - [CSS 设计指南](http://www.ituring.com.cn/book/1111)
 </details>
-
-
-## 整理现有公用样式，能用则用
-
-## 明确命名规范。
-
-## 明确具体的代码风格。
 
 
 
