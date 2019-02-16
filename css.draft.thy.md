@@ -487,8 +487,6 @@
 
 
 ### 代码风格
-为了方便对比统计，有以下基本分类，如果觉得有其它必要的，可以另行在自己文档中补充新的分类。觉得没有必要的部分，跳过即可。
-
 #### 缩进
 使用 2 个空格。
 
@@ -619,10 +617,140 @@
 ```
 
 #### 属性简写
+需要简写的属性有：
+- margin。
+- padding。
+```css
+/* good */
+.nav {
+  margin: 10px 0 0 6px;
+  padding: 2px 0 0 3px;
+}
+
+/* not good */
+.nav {
+  margin-top: 10px;
+  margin-left: 6px;
+  padding-top: 2px;
+  padding-left: 3px;
+}
+```
 
 #### 属性声明顺序
+建议顺序为：
+<details>
+<summary>1. 布局定位属性。</summary>
+
+```javascript
+[
+  "display",
+  "visibility",
+  "float",
+  "clear",
+  "overflow",
+  "clip",
+  "zoom",
+  "table-layout",
+  "border-spacing",
+  "border-collapse",
+  "list-style",
+  "flex",
+  "flex-direction",
+  "justify-content",
+  "align-items",
+  "position",
+  "top",
+  "right",
+  "bottom",
+  "right",
+  "z-index",
+]
+```
+</details>
+
+<details>
+<summary>2. 自身属性。</summary>
+
+```javascript
+[
+  "margin",
+  "box-sizing",
+  "border",
+  "border-radius",
+  "padding",
+  "width",
+  "min-width",
+  "max-widht",
+  "height",
+  "min-height",
+  "max-height",
+]
+```
+</details>
+
+<details>
+<summary>3. 文本属性。</summary>
+
+```javascript
+[
+  "font-size",
+  "line-height",
+  "text-align",
+  "vertical-align",
+  "white-space",
+  "text-decoration",
+  "text-emphasis",
+  "text-indent",
+  "text-overflow",
+  "word-wrap",
+  "word-break",
+  "color",
+  "text-shadow",
+]
+```
+</details>
+
+<details>
+<summary>4. 其它属性。</summary>
+
+```javascript
+[
+  "background",
+  "background-color",
+  "background-image",
+  "background-repeat",
+  "background-attachment",
+  "background-position",
+  "background-clip",
+  "background-origin",
+  "background-size",
+  "outline",
+  "opacity",
+  "filter",
+  "box-shadow",
+  "transitio"n
+  "transform",
+  "animation",
+  "cursor",
+  "pointer-events",
+]
+```
+</details>
 
 #### 媒体查询
+尽量将媒体查询的规则靠近与他们相关的规则，不要将他们一起放到一个独立的样式文件中，或者丢在文档的最底部，这样做只会让大家以后更容易忘记他们。
+```css
+/* good */
+.nav {
+  font-size: 14px;
+}
+
+@media (min-width: 480px) {
+  .nav {
+    font-size: 16px;
+  }
+}
+```
 
 #### 属性值为 0 的情况
 - 不要带单位。
