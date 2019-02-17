@@ -450,7 +450,10 @@
 
 ## ydh-resource-web
 ### 现有公用样式
-
+- /css/lib.css
+- /css/animate.css
+- /themes/src/layout.css
+- /themes/src/style.css
 
 ### 命名规范
 <details>
