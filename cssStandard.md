@@ -26,6 +26,8 @@
 - 涉及到大的模块，首字母大写的驼峰形式，命名语义化。
 - 不用写 js 前缀。
 
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
+
 ### <a name="principle"></a> 2 原则
 - 不能行内 css。
 - css 不能用 id 选择器。
@@ -39,8 +41,10 @@
 - 避免使用子选择符，例如 `.content > ul >li`。
 - 最后或者第一个不需要的样式效果，可采用伪选择器和 `+` 选择器。
 - 没有用 `!important` 的样式，禁止使用 `!important` 覆盖；如果有用，则可以用 `!important` 覆盖。
-- 同一类型的公用样式，如果有使用 2 个以上的，则要在其对应自身样式内变成简写，例如标签上有 `mb10 ml10 mr10`，在自身样式内简写为 `margin: 10px 10px 10px 0`。
+- 同一类型的公用样式，如果有使用 2 个以上的，则要在其对应自身样式内变成简写，例如标签上有 `mb10 ml10 mr10`，在自身样式内简写为 `margin: 10px 10px 10px 0;`。
 - 不能重置公用样式，要么用，要么不使用，自己写一个对应的新样式。
+
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
 
 ### <a name="style"></a> 3 代码风格
 - [缩进](#indent)
@@ -73,6 +77,7 @@
   font-size: 18px
 }
 ```
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
 
 #### <a name="space"></a> 空格
 需要空格情况：
@@ -126,12 +131,14 @@
   color: #666;
 }
 ```
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
 
 #### <a name="line-feed"></a> 换行
 需要换行的情况：
 - `{` 后和 `}` 前。
 - 每个属性及对应值独占一行。
 - 多个规则的分隔符 `,` 后。
+
 ```css
 /* good */
 .nav,
@@ -166,6 +173,7 @@
 }
 
 ```
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
 
 #### <a name="quotation"></a> 引号
 - 统一使用双引号。
@@ -187,6 +195,8 @@
 - 十六进制跟原生交互的时候，用全写，其余情况用简写且小写。
 - 避免使用有透明度的颜色值，如果有，使用 `rgba()` 形式，其余情况禁止使用 `rgba()` 形式。
 - 颜色值不允许用原生单词值，例如 `red`。
+
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
 
 #### <a name="short"></a> 属性简写
 - 能简写，尽量简写。如果不熟悉，自己查找资料。
@@ -290,6 +300,8 @@
 ]
 ```
 </details>
+
+<div align="right"><a href="#index">Back to top :arrow_up:</a></div>
 
 #### <a name="media"></a> 媒体查询
 尽量将媒体查询的规则靠近与他们相关的规则，不要将他们一起放到一个独立的样式文件中，或者丢在文档的最底部，这样做只会让大家以后更容易忘记他们。
