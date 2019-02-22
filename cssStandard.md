@@ -23,8 +23,8 @@
 - 如果新写的标签涉及 js 操作需要用到 class，这类 class 需要带 js 前缀，例如 `js-text`。该 class 不能写具体的样式。
 
 #### id 名
-- 涉及到大的模块，首字母大写的驼峰形式，命名语义化。
-- 不用写 js 前缀。
+- 尽量不使用 id。
+- 由于历史原因，这个项目中，涉及到新的大的模块，既用了 `createPage` 方法，里面传的 id 首字母大写的驼峰形式，命名语义化，不用写 js 前缀。
 
 <div align="right"><a href="#index">Back to top :arrow_up:</a></div>
 
