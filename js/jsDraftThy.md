@@ -254,37 +254,293 @@ const increasedByOne = numbers.map(num => num + 1);
 #### 使用分号。
 #### 禁止使用 with 语法和 eval()。
 #### 使用全等比较
+#### 永远不要直接使用undefined进行变量判断，使用typeof和字符串'undefined'对变量进行判断
 
 ### 代码风格
 
 #### 缩进
+使用 2 个空格。
 
 #### 分号
+以下几种情况后需加分号：
+
+- 变量声明
+- 表达式
+- return
+- throw
+- break
+- continue
+- do-while
 
 #### 空格
+以下几种情况不需要空格：
+
+- 对象的属性名后
+- 前缀一元运算符后
+- 后缀一元运算符前
+- 函数调用括号前
+- 无论是函数声明还是函数表达式，'('前不要空格
+- 数组的'['后和']'前
+- 对象的'{'后和'}'前
+- 运算符'('后和')'前
+
+以下几种情况需要空格：
+
+- 二元运算符前后
+- 三元运算符'?:'前后
+- 代码块'{'前
+- 下列关键字前：else, while, catch, finally
+- 下列关键字后：if, else, for, while, do, switch, case, try, catch, finally, with, return, typeof
+- 单行注释'//'后（若单行注释和代码同行，则'//'前也需要），多行注释'*'后
+- 对象的属性值前
+- for循环，分号后留有一个空格，前置条件如果有多个，逗号后留一个空格
+- 无论是函数声明还是函数表达式，'{'前一定要有空格
+- 函数的参数之间
+
+```javascript
+// not good
+var a = {
+    b :1
+};
+
+// good
+var a = {
+    b: 1
+};
+
+// not good
+++ x;
+y ++;
+z = x?1:2;
+
+// good
+++x;
+y++;
+z = x ? 1 : 2;
+
+// not good
+var a = [ 1, 2 ];
+
+// good
+var a = [1, 2];
+
+// not good
+var a = ( 1+2 )*3;
+
+// good
+var a = (1 + 2) * 3;
+
+// no space before '(', one space before '{', one space between function parameters
+var doSomething = function(a, b, c) {
+    // do something
+};
+
+// no space before '('
+doSomething(item);
+
+// not good
+for(i=0;i<6;i++){
+    x++;
+}
+
+// good
+for (i = 0; i < 6; i++) {
+    x++;
+}
+```
 
 #### 空行
+以下几种情况需要空行：
 
+- 变量声明后（当变量声明在代码块的最后一行时，则无需空行）
+- 注释前（当注释在代码块的第一行时，则无需空行）
+- 代码块后（在函数调用、数组、对象中则无需空行）
+- 文件最后保留一个空行
+```javascript
+// need blank line after variable declaration
+var x = 1;
+
+// not need blank line when variable declaration is last expression in the current block
+if (x >= 1) {
+    var y = x + 1;
+}
+
+var a = 2;
+
+// need blank line before line comment
+a++;
+
+function b() {
+    // not need blank line when comment is first line of block
+    return a;
+}
+
+// need blank line after blocks
+for (var i = 0; i < 2; i++) {
+    if (true) {
+        return false;
+    }
+
+    continue;
+}
+
+// not good
+var obj = {
+    foo: function() {
+        return 1;
+    },
+
+    bar: function() {
+        return 2;
+    }
+};
+
+// not need blank line when in argument list, array, object
+func(
+    2,
+    function() {
+        a++;
+    },
+    3
+);
+
+var foo = [
+    2,
+    function() {
+        a++;
+    },
+    3
+];
+
+
+var foo = {
+    a: 2,
+    b: function() {
+        a++;
+    },
+    c: 3
+};
+```
 #### 换行
+换行的地方，行末必须有 `,` 或者运算符 `；`
 
+以下几种情况不需要换行：
+
+- 下列关键字后：else, catch, finally
+- 代码块'{'前
+以下几种情况需要换行：
+
+- 代码块'{'后和'}'前
+- 变量赋值后
+```javascript
+// not good
+var a = {
+    b: 1
+    , c: 2
+};
+
+x = y
+    ? 1 : 2;
+
+// good
+var a = {
+    b: 1,
+    c: 2
+};
+
+x = y ? 1 : 2;
+x = y ?
+    1 : 2;
+
+// no need line break with 'else', 'catch', 'finally'
+if (condition) {
+    ...
+} else {
+    ...
+}
+
+try {
+    ...
+} catch (e) {
+    ...
+} finally {
+    ...
+}
+
+// not good
+function test()
+{
+    ...
+}
+
+// good
+function test() {
+    ...
+}
+
+// not good
+var a, foo = 7, b,
+    c, bar = 8;
+
+// good
+var a,
+    foo = 7,
+    b, c, bar = 8;
+```
 #### 注释
+- 单行注释单独一行
+- 多上注释最少三行
+```javascript
+
+// one space after code
+var name = 'Tom';
+
+/*
+ * one space after '*'
+ */
+var x = 1;
+
+```
 
 #### 引号
 
 #### 括号
+下列关键字后必须有大括号（即使代码块的内容只有一行）：
+- if,
+- else,
+- for,
+- while,
+- do,
+- switch,
+- try,
+- catch,
+- finally,
+- with
 
 #### 变量
+- 标准变量采用驼峰式命名（除了对象的属性外，主要是考虑到cgi返回的数据）
+- 'ID'在变量名中全大写
+- 'URL'在变量名中全大写
+- 'Android'在变量名中大写第一个字母
+- 'IOS'全部大写
+- 常量全大写，用下划线连接
 
 #### 对象
+- 属性名不要加引号，除非出现无法解析的情况，例如 name-data 属性。
 
 #### 数组
 
 #### 函数
+归属到了原则
 
 #### 字符串
+归属到原则
 
 #### 原型
+- 尽量使用 class 取代 prototype
 
 #### 模块
+归属到原则
 
 #### 迭代器
+归属到原则
