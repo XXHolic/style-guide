@@ -112,11 +112,14 @@
 #### <a name="empty-row"></a> 空行
 需要空行的情况：
 - 文件最后保留一个空行。
-- `}` 后留空行.
+- `}` 后留空行，嵌套里面的最后一个样式的结束 } 不用空行。
 ```css
 /* good */
 .nav {
   font-size: 18px;
+  .color {
+    color: #333;
+  }
 }
 
 .footer {
@@ -126,6 +129,10 @@
 /* not good */
 .nav {
   font-size: 18px;
+  .color {
+    color: #333;
+  }
+
 }
 .footer {
   color: #666;
@@ -199,7 +206,8 @@
 <div align="right"><a href="#index">Back to top :arrow_up:</a></div>
 
 #### <a name="short"></a> 属性简写
-- 能简写，尽量简写。如果不熟悉，自己查找资料。
+从已知的情况中逐渐补充，而不是一概而论。
+- margin padding 有 2 个及以上需要简写。
 
 #### <a name="attribute"></a> 属性声明顺序
 <details>
