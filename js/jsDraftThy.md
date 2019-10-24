@@ -254,7 +254,7 @@ const increasedByOne = numbers.map(num => num + 1);
 #### 使用分号。
 #### 禁止使用 with 语法和 eval()。
 #### 使用全等比较
-#### 永远不要直接使用undefined进行变量判断，使用typeof和字符串'undefined'对变量进行判断
+#### 永远不要直接使用 undefined 进行变量判断，使用typeof和字符串'undefined'对变量进行判断
 
 ### 代码风格
 
